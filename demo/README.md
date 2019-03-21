@@ -1,8 +1,8 @@
-### Graphite -> Clickhouse stand
+### Graphite -> Clickhouse demo
 
 #### What is it?
 
-This stand does the following:
+This demo does the following:
 - Generates some graphite data
 - Sends it to [graphite-clickhouse](https://github.com/lomik/graphite-clickhouse)
 - Via graphite-clickhouse stores it to Clickhouse database

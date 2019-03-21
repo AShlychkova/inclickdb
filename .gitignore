@@ -1,4 +1,4 @@
 .ipynb_checkpoints
-stand/data
-stand/snapshots
-stand/grafana-key/key.txt
+demo/data
+demo/snapshots
+demo/grafana-key/key.txt

@@ -64,7 +64,7 @@
           "formattedQuery": "",
           "hide": false,
           "intervalFactor": 1,
-          "query": "SELECT\n$timeSeries as t,\navg(Value)\nFROM $table\nWHERE $timeFilter\nAND Path='my.awesome.path'\nGROUP BY t\nORDER BY t",
+          "query": "SELECT \n$timeSeries as t, \navg(Value) \nFROM graphite \nALL INNER JOIN \n( \nSELECT Path \nFROM graphite_tagged \nWHERE \nTag1 = 'a=1' \nor Tag1 = 'c=5' \nGROUP BY (Path, Tags) \nHAVING count(Tag1) == 2 \n) USING  Path \nWHERE $timeFilter \nGROUP BY t \nORDER BY t",
           "rawQuery": "",
           "refId": "A",
           "round": "0s",
