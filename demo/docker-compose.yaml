@@ -43,9 +43,12 @@ grafana:
   links:
   - clickhouse
 grafana-key:
-  build: grafana-key
+  image: python:3.6-alpine
   volumes:
   - ./grafana-key:/grafana-key
+  entrypoint: |
+    sh -c '
+      pip install requests && python /grafana-key/get_key.py'
   links:
   - grafana
 
