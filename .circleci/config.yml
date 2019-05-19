@@ -11,7 +11,6 @@ jobs:
       - checkout
       - setup_remote_docker
 
-
       - run:
           name: compose
           command: |
@@ -24,20 +23,18 @@ jobs:
           command:  |
             docker build -t generator ./Generator
             docker run --network container:stand_clickhouse_1 generator
-
           background: true
 
       - run:
-          name: image
+          name: screenshot
           command:  |
-            docker build -t image ./Image
-            docker run --network container:stand_grafana_1: image
+            docker build -t screenshot ./Screenshot
+            docker run --network container:stand_grafana_1: screenshot
 
       - run:
-          name: copy image
+          name: copy screenshot
           command:  |
-            docker cp image:/snapshots/output.png stand/snapshots/output.png
-
+            docker cp screenshot:/snapshots/output.png stand/snapshots/output.png
 
       - store_artifacts:
           path: stand/snapshots
@@ -53,7 +50,6 @@ jobs:
       - checkout
       - setup_remote_docker
 
-
       - run:
           name: compose
           command: |
@@ -66,23 +62,22 @@ jobs:
           command:  |
             docker build -t generator ./Generator
             docker run --network container:stand_clickhouse_1 generator
-
           background: true
 
       - run:
-          name: image
+          name: screenshot
           command:  |
-            docker build -t image ./Image
-            docker run --network container:stand_grafana_1: image
+            docker build -t screenshot ./Screenshot
+            docker run --network container:stand_grafana_1: screenshot
 
       - run:
-          name: copy image
+          name: copy screenshot
           command:  |
-            docker cp image:/snapshots/output.png stand/snapshots/output.png
-
+            docker cp screenshot:/snapshots/output.png stand/snapshots/output.png
 
       - store_artifacts:
           path: stand/snapshots
+
 
   build_demo_2:
 
@@ -102,7 +97,6 @@ jobs:
                 docker-compose up
               background: true
 
-
           - run:
               name: generator
               command:  |
@@ -113,12 +107,15 @@ jobs:
 
 workflows:
   version: 2
+
   demo0:
     jobs:
       - build_demo_0
+
   demo1:
     jobs:
       - build_demo_1
+
   demo2:
     jobs:
       - build_demo_2

@@ -1,7 +1,7 @@
 ### Store metrics  
 #### What is it?
 
-This stand does the following:
+This demo does the following:
 - Generates some graphite data
 - parses it
 - Sends it to [clickhouse]
@@ -10,9 +10,4 @@ This stand does the following:
 
 Do the following steps:
 - `docker-compose up`
-- `bash generator.sh`, `bash generator2.sh` (for generating data)
-
-#### TODO
-
-- Add .sh with cron
-- Add grafana
+- `bash generator.sh`(for generating data)
